@@ -33,28 +33,21 @@
 	display: grid;
 	width: 90%;
 	margin: auto;
-	grid-template-columns: 70% 30%;
 	gap: 2px;
 }
 
 .numbers {
 	width: auto;
 	display: grid;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: auto auto auto auto;
 	grid-template-rows: auto auto auto auto;
 	padding: 0;
 	gap: 2px;
 }
 
-.numbers li:last-child {
+.numbers li:nth-last-child(2) {
 	grid-column-start: 1;
 	grid-column-end: 4;
-}
-
-.actions {
-	display: grid;
-	padding: 0;
-	gap: 2px;
 }
 
 li {
