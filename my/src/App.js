@@ -37,33 +37,33 @@ export const App = () => {
 	};
 
 	const addDigit = (event) => {
-		const li = event.target.closest('li');
 
-		if (li) {
+		if (event) {
 			setResultColor(resultColor ? !resultColor : null);
 			setValue((updatedValue) =>
-				updatedValue === 0 ? li.textContent : (updatedValue += li.textContent),
+				updatedValue === 0 ? event : (updatedValue += event),
 			);
 		}
 	};
 
 	const doOperation = (event) => {
-		const act = event.target.closest('li');
-		if (isFinite(act.textContent)) {
-			addDigit(event);
-		} else if (!isFinite(act.textContent)) {
-			if (act.textContent !== '=') {
+		const dataValue = event.target.dataset.value;
+
+		if (isFinite(dataValue)) {
+			addDigit(dataValue);
+		} else if (!isFinite(dataValue)) {
+			if (dataValue !== '=') {
 				setResultColor(resultColor ? !resultColor : null);
 				setValue(
-					act.textContent === '-'
+					dataValue  === '-'
 						? `${value} - `
-						: act.textContent === '+'
+						: dataValue  === '+'
 						? `${value} + `
-						: act.textContent === 'C'
+						: dataValue  === 'C'
 						? 0
 						: null,
 				);
-			} else if (act.textContent === '=') {
+			} else if (dataValue  === '=') {
 				setValue(() => countResult(value));
 			}
 		}
@@ -80,7 +80,7 @@ export const App = () => {
 					}}
 				>
 					{numbers.map((number) => (
-						<li className={styles.li} key={number}>
+						<li className={styles.li} key={number} data-value={number}>
 							{number}
 						</li>
 					))}
